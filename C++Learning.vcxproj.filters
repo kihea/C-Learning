@@ -18,7 +18,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\C++Learning.cpp">
+    <ClCompile Include="src\Projects\Levensthein\Levensthein.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
