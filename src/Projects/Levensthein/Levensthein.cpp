@@ -53,7 +53,7 @@ int Levensthein(string str1, string str2)
 				}
 			}
 			catch (...) {
-				return matrix[i - 1][j - 1] + cols - rows + 1;
+				return matrix[i - 1][j - 1] + (cols - rows) + 1;
 				
 			}
 		}
