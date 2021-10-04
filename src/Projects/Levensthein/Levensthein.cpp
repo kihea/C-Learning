@@ -1,7 +1,6 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#define nil string ""
 
 using namespace std;
 
@@ -12,17 +11,16 @@ void printf(vector<vector<int>> input) {
 		for (int i = 0; unsigned(i) <= input[size].size() - 1; i++) {
 			int value = input[size][i];
 			cout << value << " ";
-
 		}
 		log(endl);
 	}
 }
 int Levensthein(string str1, string str2)
-
 {
-	
-	int rows = size(str1);
-	int cols = size(str2);
+	string strA = str1 > str2 ? str2 : str1;
+	string strB = str1 > str2 ? str1 : str2;
+	int rows = size(strA);
+	int cols = size(strB);
 
 	if (str1 == str2) {
 		return 0;
@@ -44,11 +42,10 @@ int Levensthein(string str1, string str2)
 		matrix[0][j] = j;
 	}
 	
-	
 	for (int i = 1; i <= rows; i++) {
 		for (int j = 1; j <= cols; j++) {
 			try {
-				if (str1.at(i - 1) == str2.at(i - 1)) {
+				if (strA.at(i - 1) == strB.at(i - 1)) {
 					matrix[i][j] = matrix[i - 1][j - 1];
 				}
 				else {
@@ -56,7 +53,7 @@ int Levensthein(string str1, string str2)
 				}
 			}
 			catch (...) {
-				return matrix[i - 1][j - 1] + abs(cols - rows) + 1;
+				return matrix[i - 1][j - 1] + cols - rows + 1;
 				
 			}
 		}
@@ -70,7 +67,7 @@ int main() {
 		{"Kidoysadadad", "Jido"}
 	};
 
-	for (int i = 0; i < sizeof(testStrings) / sizeof(testStrings[0]); i++) {
+	for (int i = 0; unsigned(i) < sizeof(testStrings); i++) {
 		log(Levensthein(testStrings[i][0], testStrings[i][1]))
 	}
 	return 0;
