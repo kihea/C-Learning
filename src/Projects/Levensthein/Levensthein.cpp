@@ -1,4 +1,4 @@
-#include <string>
+// Online C++ compiler to run C++ program online
 #include <iostream>
 #include <vector>
 
@@ -15,13 +15,9 @@ void printf(vector<vector<int>> input) {
 		log(endl);
 	}
 }
-int Levensthein(string str1, string str2)
+int Levensthein(const char* str1, const char* str2, int rows, int cols)
 {
-	string strA = str1 > str2 ? str2 : str1;
-	string strB = str1 > str2 ? str1 : str2;
-	int rows = size(strA);
-	int cols = size(strB);
-
+	
 	if (str1 == str2) {
 		return 0;
 	}
@@ -44,31 +40,43 @@ int Levensthein(string str1, string str2)
 	
 	for (int i = 1; i <= rows; i++) {
 		for (int j = 1; j <= cols; j++) {
-			try {
-				if (strA.at(i - 1) == strB.at(i - 1)) {
-					matrix[i][j] = matrix[i - 1][j - 1];
+		    int cost = 1;
+        
+			
+				if (str1[i-1] == str2[j-1]) {
+					cost = 0;
 				}
-				else {
-					matrix[i][j] = min(matrix[i][j - 1] + 1, min(matrix[i - 1][j] + 1, min(matrix[i - 1][j - 1] + 1, i > 1 && j > 1 ? matrix[i - 2][j - 2] + 1 : cols + 1)));;
-				}
-			}
-			catch (...) {
-				return matrix[i - 1][j - 1] + (cols - rows) + 1;
-				
-			}
+        
+			
+      int deletion = matrix[i-1][j] + 1;
+			int insertion = matrix[i][j-1] + 1;
+			int substitution = matrix[i-1][j-1] + cost;
+      matrix[i][j] = min(deletion, min(insertion, substitution));
+			
+      if (i > 1 && j > 1 && str1[i-1] == str2[j-2] && str1[i-2] == str2[j-1]) {
+        int transposition = matrix[i-2][j-2] + 1;
+        matrix[i][j] = min(matrix[i][j], transposition);
+      }
+      
 		}
 	}
 	return matrix[rows][cols];
 }
 
 int main() {
-	string testStrings[][2] = {
+	const char* testStrings[][2] = {
 		{"he", "eh"},
-		{"Kidoysadadad", "Jido"}
+		{"Kidoysadadad", "Jido"},
+		{"bro","bbro"}
 	};
-
+  int lengths[][2] = {
+    {2,2},
+    {12, 4},
+    {3, 4}
+  };
 	for (int i = 0; unsigned(i) < sizeof(testStrings); i++) {
-		log(Levensthein(testStrings[i][0], testStrings[i][1]))
+		log(Levensthein(testStrings[i][0], testStrings[i][1], lengths[i][0], lengths[i][1]));
+    
 	}
 	return 0;
 }
