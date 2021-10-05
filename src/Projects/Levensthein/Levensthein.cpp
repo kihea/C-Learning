@@ -1,10 +1,15 @@
 // Online C++ compiler to run C++ program online
 #include <iostream>
 #include <vector>
+#include <string>
+#include <cstring>
 
 using namespace std;
-
 #define log(x) cout << x << endl;
+#define convert(str, arr) strcpy(arr, str.c_str());
+
+
+
 
 void printf(vector<vector<int>> input) {
 	for (int size = 0; unsigned(size) <= input.size() - 1; size++) {
@@ -15,9 +20,14 @@ void printf(vector<vector<int>> input) {
 		log(endl);
 	}
 }
-int Levensthein(const char* str1, const char* str2, int rows, int cols)
+int Levensthein(const string str, const string strB)
 {
-	
+	int rows = str.length();
+  int cols = strB.length();
+  char x[str.length() + 1];
+  char y[strB.length() + 1];
+  char* str1 = convert(str, x);
+  char* str2 = convert(strB, y);
 	if (str1 == str2) {
 		return 0;
 	}
@@ -64,18 +74,14 @@ int Levensthein(const char* str1, const char* str2, int rows, int cols)
 }
 
 int main() {
-	const char* testStrings[][2] = {
-		{"he", "eh"},
+	const string testStrings[][2] = {
+		{"heijdsabibds", "eh"},
 		{"Kidoysadadad", "Jido"},
 		{"bro","bbro"}
 	};
-  int lengths[][2] = {
-    {2,2},
-    {12, 4},
-    {3, 4}
-  };
+  
 	for (int i = 0; unsigned(i) < sizeof(testStrings); i++) {
-		log(Levensthein(testStrings[i][0], testStrings[i][1], lengths[i][0], lengths[i][1]));
+		log(Levensthein(testStrings[i][0], testStrings[i][1]));
     
 	}
 	return 0;

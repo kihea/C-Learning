@@ -1,2 +1,2 @@
 language = "bash"
-run = ""
+run = "g++ src/Projects/Levensthein/Levensthein.cpp -o src/bin/main && src/bin/main"
