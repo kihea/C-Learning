@@ -8,5 +8,5 @@ int main() {
     string testCases[][2] = {
         {"Hey", "rey"}
     };
-    cout << strdist("Hey", "rey") << endl;
+    cout << strdist("eryt", "reyll") << endl;
 }
