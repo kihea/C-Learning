@@ -1,6 +1,12 @@
-#include <regexp>
-#define r(x) regexp(x)
+#include <string>
+#include "./Projects/projects.h"
+using namespace std;
+using namespace pr;
 
-if (regexp_search("hey", r("hey"))) {
-    cout << "hey";
+
+int main() {
+    string testCases[][2] = {
+        {"Hey", "rey"}
+    };
+    cout << strdist("Hey", "rey") << endl;
 }
