@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include "classes.h"
 
 using namespace std;
 #define log(x) cout << x << endl;
@@ -61,4 +62,6 @@ namespace pr {
         }
         return matrix[rows][cols];
     };
+
+    
 }
